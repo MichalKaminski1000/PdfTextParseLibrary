@@ -1,3 +1,4 @@
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,23 @@ namespace PdfTextParseLibrary
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
+            string path = @"C:\CWI Presentation\FV ORANGE.pdf";
+
+            
+
+           
+            PdfReader reader = new PdfReader(path);
+            bool isScannedPdf = PdfTextRecognizer.IsScannedPdf(reader);
+            List<Chunk> chunks = PdfTextRecognizer.GetChunksWithRectangleCoordinates(reader);
+            List<RectAndWords> words = PdfTextRecognizer.GetWordsWithRectangleCoordinates(chunks);
+
+      
+
+
             Console.WriteLine("Hello World!");
             Console.ReadKey();
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+          
         }
     }
 }
